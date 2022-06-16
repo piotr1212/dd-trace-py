@@ -1,0 +1,278 @@
+[[
+  {
+    "name": "flask.request",
+    "service": "flask",
+    "resource": "GET /",
+    "trace_id": 0,
+    "span_id": 1,
+    "parent_id": 0,
+    "type": "web",
+    "meta": {
+      "flask.endpoint": "hello",
+      "flask.url_rule": "/",
+      "flask.version": "0.12.5",
+      "http.method": "GET",
+      "http.status_code": "200",
+      "http.url": "http://localhost/",
+      "runtime-id": "b6c6a231c8454a1ea979e08cf10ffc79"
+    },
+    "metrics": {
+      "_dd.agent_psr": 1.0,
+      "_dd.measured": 1,
+      "_dd.top_level": 1,
+      "_dd.tracer_kr": 1.0,
+      "_sampling_priority_v1": 1,
+      "system.pid": 14680
+    },
+    "duration": 3026000,
+    "start": 1657048671743127000
+  },
+     {
+       "name": "flask.application",
+       "service": "flask",
+       "resource": "GET /",
+       "trace_id": 0,
+       "span_id": 2,
+       "parent_id": 1,
+       "meta": {
+         "flask.endpoint": "hello",
+         "flask.url_rule": "/"
+       },
+       "duration": 973000,
+       "start": 1657048671743268000
+     },
+        {
+          "name": "flask.try_trigger_before_first_request_functions",
+          "service": "flask",
+          "resource": "flask.try_trigger_before_first_request_functions",
+          "trace_id": 0,
+          "span_id": 4,
+          "parent_id": 2,
+          "duration": 56000,
+          "start": 1657048671743476000
+        },
+        {
+          "name": "flask.preprocess_request",
+          "service": "flask",
+          "resource": "flask.preprocess_request",
+          "trace_id": 0,
+          "span_id": 5,
+          "parent_id": 2,
+          "duration": 17000,
+          "start": 1657048671743610000
+        },
+        {
+          "name": "flask.dispatch_request",
+          "service": "flask",
+          "resource": "flask.dispatch_request",
+          "trace_id": 0,
+          "span_id": 6,
+          "parent_id": 2,
+          "duration": 89000,
+          "start": 1657048671743670000
+        },
+           {
+             "name": "tests.contrib.flask.test_request.hello",
+             "service": "flask",
+             "resource": "/",
+             "trace_id": 0,
+             "span_id": 11,
+             "parent_id": 6,
+             "duration": 42000,
+             "start": 1657048671743702000
+           },
+        {
+          "name": "flask.process_response",
+          "service": "flask",
+          "resource": "flask.process_response",
+          "trace_id": 0,
+          "span_id": 7,
+          "parent_id": 2,
+          "duration": 18000,
+          "start": 1657048671743795000
+        },
+        {
+          "name": "flask.do_teardown_request",
+          "service": "flask",
+          "resource": "flask.do_teardown_request",
+          "trace_id": 0,
+          "span_id": 8,
+          "parent_id": 2,
+          "duration": 30000,
+          "start": 1657048671744121000
+        },
+        {
+          "name": "flask.do_teardown_appcontext",
+          "service": "flask",
+          "resource": "flask.do_teardown_appcontext",
+          "trace_id": 0,
+          "span_id": 9,
+          "parent_id": 2,
+          "duration": 14000,
+          "start": 1657048671744208000
+        },
+     {
+       "name": "flask.response",
+       "service": "flask",
+       "resource": "flask.response",
+       "trace_id": 0,
+       "span_id": 3,
+       "parent_id": 1,
+       "error": 1,
+       "meta": {
+         "error.msg": "",
+         "error.stack": "Traceback (most recent call last):\n  File \"/Users/munir.abdinur/Documents/ApmPython/dd-trace-py/ddtrace/contrib/wsgi/wsgi.py\", line 114, in __call__\n    yield chunk\nGeneratorExit\n",
+         "error.type": "builtins.GeneratorExit"
+       },
+       "duration": 1672000,
+       "start": 1657048671744329000
+     },
+        {
+          "name": "traced_function_0",
+          "service": "flask",
+          "resource": "traced_function_0",
+          "trace_id": 0,
+          "span_id": 10,
+          "parent_id": 3,
+          "duration": 8000,
+          "start": 1657048671744349000
+        }],
+[
+  {
+    "name": "flask.request",
+    "service": "flask",
+    "resource": "GET /hi",
+    "trace_id": 1,
+    "span_id": 1,
+    "parent_id": 0,
+    "type": "web",
+    "meta": {
+      "flask.endpoint": "hello",
+      "flask.url_rule": "/hi",
+      "flask.version": "0.12.5",
+      "http.method": "GET",
+      "http.status_code": "200",
+      "http.url": "http://localhost/hi",
+      "runtime-id": "b6c6a231c8454a1ea979e08cf10ffc79"
+    },
+    "metrics": {
+      "_dd.agent_psr": 1.0,
+      "_dd.measured": 1,
+      "_dd.top_level": 1,
+      "_dd.tracer_kr": 1.0,
+      "_sampling_priority_v1": 1,
+      "system.pid": 14680
+    },
+    "duration": 1291000,
+    "start": 1657048671748132000
+  },
+     {
+       "name": "flask.application",
+       "service": "flask",
+       "resource": "GET /hi",
+       "trace_id": 1,
+       "span_id": 2,
+       "parent_id": 1,
+       "meta": {
+         "flask.endpoint": "hello",
+         "flask.url_rule": "/hi"
+       },
+       "duration": 735000,
+       "start": 1657048671748196000
+     },
+        {
+          "name": "flask.try_trigger_before_first_request_functions",
+          "service": "flask",
+          "resource": "flask.try_trigger_before_first_request_functions",
+          "trace_id": 1,
+          "span_id": 4,
+          "parent_id": 2,
+          "duration": 19000,
+          "start": 1657048671748402000
+        },
+        {
+          "name": "flask.preprocess_request",
+          "service": "flask",
+          "resource": "flask.preprocess_request",
+          "trace_id": 1,
+          "span_id": 5,
+          "parent_id": 2,
+          "duration": 20000,
+          "start": 1657048671748485000
+        },
+        {
+          "name": "flask.dispatch_request",
+          "service": "flask",
+          "resource": "flask.dispatch_request",
+          "trace_id": 1,
+          "span_id": 6,
+          "parent_id": 2,
+          "duration": 82000,
+          "start": 1657048671748538000
+        },
+           {
+             "name": "tests.contrib.flask.test_request.hello",
+             "service": "flask",
+             "resource": "/",
+             "trace_id": 1,
+             "span_id": 11,
+             "parent_id": 6,
+             "duration": 35000,
+             "start": 1657048671748571000
+           },
+        {
+          "name": "flask.process_response",
+          "service": "flask",
+          "resource": "flask.process_response",
+          "trace_id": 1,
+          "span_id": 7,
+          "parent_id": 2,
+          "duration": 27000,
+          "start": 1657048671748652000
+        },
+        {
+          "name": "flask.do_teardown_request",
+          "service": "flask",
+          "resource": "flask.do_teardown_request",
+          "trace_id": 1,
+          "span_id": 8,
+          "parent_id": 2,
+          "duration": 23000,
+          "start": 1657048671748826000
+        },
+        {
+          "name": "flask.do_teardown_appcontext",
+          "service": "flask",
+          "resource": "flask.do_teardown_appcontext",
+          "trace_id": 1,
+          "span_id": 9,
+          "parent_id": 2,
+          "duration": 13000,
+          "start": 1657048671748898000
+        },
+     {
+       "name": "flask.response",
+       "service": "flask",
+       "resource": "flask.response",
+       "trace_id": 1,
+       "span_id": 3,
+       "parent_id": 1,
+       "error": 1,
+       "meta": {
+         "error.msg": "",
+         "error.stack": "Traceback (most recent call last):\n  File \"/Users/munir.abdinur/Documents/ApmPython/dd-trace-py/ddtrace/contrib/wsgi/wsgi.py\", line 114, in __call__\n    yield chunk\nGeneratorExit\n",
+         "error.type": "builtins.GeneratorExit"
+       },
+       "duration": 386000,
+       "start": 1657048671749001000
+     },
+        {
+          "name": "traced_function_0",
+          "service": "flask",
+          "resource": "traced_function_0",
+          "trace_id": 1,
+          "span_id": 10,
+          "parent_id": 3,
+          "duration": 8000,
+          "start": 1657048671749022000
+        }]]

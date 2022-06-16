@@ -5,6 +5,7 @@ import flask
 from flask import abort
 from flask import jsonify
 from flask import make_response
+import pytest
 
 from ddtrace.constants import ANALYTICS_SAMPLE_RATE_KEY
 from ddtrace.contrib.flask.patch import flask_version
