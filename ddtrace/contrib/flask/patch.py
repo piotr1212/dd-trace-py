@@ -273,7 +273,9 @@ def _wrap_start_response(func, span, request):
         if not span.get_tag(FLASK_ENDPOINT) and not span.get_tag(FLASK_URL_RULE):
             span.resource = u" ".join((request.method, code))
 
-        trace_utils.set_http_meta(span, config.flask, status_code=code, response_headers=headers)
+        trace_utils.set_http_meta(
+            span, config.flask, status_code=code, response_headers=headers, request_cookies=request.cookies
+        )
         return func(status_code, headers)
 
     return traced_start_response
@@ -519,6 +521,12 @@ def _set_request_tags(span):
         if not span.get_tag(FLASK_URL_RULE) and request.url_rule and request.url_rule.rule:
             span.resource = u" ".join((request.method, request.url_rule.rule))
             span._set_str_tag(FLASK_URL_RULE, request.url_rule.rule)
+
+        if not span.get_tag(FLASK_VIEW_ARGS) and request.view_args and config.flask.get("collect_view_args"):
+            for k, v in request.view_args.items():
+                # DEV: Do not use `_set_str_tag` here since view args can be string/int/float/path/uuid/etc
+                #      https://flask.palletsprojects.com/en/1.1.x/api/#url-route-registrations
+                span.set_tag(u".".join((FLASK_VIEW_ARGS, k)), v)
 
         if not span.get_tag(FLASK_VIEW_ARGS) and request.view_args and config.flask.get("collect_view_args"):
             for k, v in request.view_args.items():

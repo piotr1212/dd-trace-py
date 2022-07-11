@@ -2784,6 +2784,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ]
           },
@@ -2817,6 +2820,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "(?i:sleep\\(\\s*?\\d*?\\s*?\\)|benchmark\\(.*?\\,.*?\\))",
@@ -2853,6 +2859,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "(?:\\b(?:(?:c(?:onnection_id|urrent_user)|database)\\s*?\\([^\\)]*?|u(?:nion(?:[\\w(?:\\s]*?select| select @)|ser\\s*?\\([^\\)]*?)|s(?:chema\\s*?\\([^\\)]*?|elect.*?\\w?user\\()|into[\\s+]+(?:dump|out)file\\s*?[\\\"'`]|from\\W+information_schema\\W|exec(?:ute)?\\s+master\\.)|[\\\"'`](?:;?\\s*?(?:union\\b\\s*?(?:(?:distin|sele)ct|all)|having|select)\\b\\s*?[^\\s]|\\s*?!\\s*?[\\\"'`\\w])|\\s*?exec(?:ute)?.*?\\Wxp_cmdshell|\\Wiif\\s*?\\()",
@@ -2888,6 +2897,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "(?:[\\\"'`](?:;*?\\s*?waitfor\\s+(?:delay|time)\\s+[\\\"'`]|;.*?:\\s*?goto)|alter\\s*?\\w+.*?cha(?:racte)?r\\s+set\\s+\\w+)",
@@ -2923,6 +2935,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "(?i:merge.*?using\\s*?\\(|execute\\s*?immediate\\s*?[\\\"'`]|match\\s*?[\\w(?:),+-]+\\s*?against\\s*?\\()",
@@ -2959,6 +2974,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "union.*?select.*?from",
@@ -2994,6 +3012,9 @@
               },
               {
                 "address": "grpc.server.request.message"
+              },
+              {
+                "address": "server.request.cookies"
               }
             ],
             "regex": "(?:;\\s*?shutdown\\s*?(?:[#;{]|\\/\\*|--)|waitfor\\s*?delay\\s?[\\\"'`]+\\s?\\d|select\\s*?pg_sleep)",

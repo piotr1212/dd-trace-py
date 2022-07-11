@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Detect attacks on the server.request.cookies
+

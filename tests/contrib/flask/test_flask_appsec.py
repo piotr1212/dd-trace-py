@@ -49,3 +49,33 @@ class FlaskAppSecTestCase(BaseFlaskTestCase):
         spans = self.pop_spans()
         root_span = spans[0]
         assert len(_context.get_item("http.request.query", span=root_span)) == 0
+
+    def test_flask_cookie_sql_injection(self):
+        self.tracer._appsec_enabled = True
+        # Hack: need to pass an argument to configure so that the processors are recreated
+        self.tracer.configure(api_version="v0.4")
+        self.client.set_cookie("localhost", "attack", "1' or '1' = '1'")
+        resp = self.client.get("/")
+        assert resp.status_code == 404
+        spans = self.pop_spans()
+        root_span = spans[0]
+
+        assert "triggers" in json.loads(root_span.get_tag("_dd.appsec.json"))
+        assert _context.get_item("http.request.cookies", span=root_span)["attack"] == "1' or '1' = '1'"
+        query = dict(_context.get_item("http.request.cookies", span=root_span))
+        assert query == {"attack": "1' or '1' = '1'"}
+
+    def test_flask_cookie(self):
+        self.tracer._appsec_enabled = True
+        # Hack: need to pass an argument to configure so that the processors are recreated
+        self.tracer.configure(api_version="v0.4")
+        self.client.set_cookie("localhost", "testingcookie_key", "testingcookie_value")
+        resp = self.client.get("/")
+        assert resp.status_code == 404
+        spans = self.pop_spans()
+        root_span = spans[0]
+
+        assert root_span.get_tag("_dd.appsec.json") is None
+        assert _context.get_item("http.request.cookies", span=root_span)["testingcookie_key"] == "testingcookie_value"
+        query = dict(_context.get_item("http.request.cookies", span=root_span))
+        assert query == {"testingcookie_key": "testingcookie_value"}

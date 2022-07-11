@@ -55,8 +55,8 @@ def _normalized_header_name(header_name):
     return NORMALIZE_PATTERN.sub("_", normalize_header_name(header_name))
 
 
-def _normalize_tag_name(request_or_response, header_name):
-    # type: (str, str) -> str
+def _normalize_tag_name(request_or_response, header_name, kind="headers"):
+    # type: (str, str, str) -> str
     """
     Given a tag name, e.g. 'Content-Type', returns a corresponding normalized tag name, i.e
     'http.request.headers.content_type'. Rules applied actual header name are:
@@ -66,6 +66,7 @@ def _normalize_tag_name(request_or_response, header_name):
     :param request_or_response: The context of the headers: request|response
     :param header_name: The header's name
     :type header_name: str
+    :type kind: It's the element to normalize (headers|cookies)
     :rtype: str
     """
     # Looking at:
@@ -77,7 +78,7 @@ def _normalize_tag_name(request_or_response, header_name):
     #   - any digit is left unchanged
     #   - any block of any length of different ASCII chars is converted to a single underscore '_'
     normalized_name = _normalized_header_name(header_name)
-    return "http.{}.headers.{}".format(request_or_response, normalized_name)
+    return "http.{}.{}.{}".format(request_or_response, kind, normalized_name)
 
 
 def _store_headers(headers, span, integration_config, request_or_response):

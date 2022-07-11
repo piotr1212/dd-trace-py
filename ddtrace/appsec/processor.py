@@ -100,6 +100,13 @@ def _set_headers(span, headers):
             span.set_tag(_normalize_tag_name("request", k), headers[k])
 
 
+def _set_cookies(span, cookies):
+    # type: (Span, Dict[str, Union[str, List[str]]]) -> None
+    for k in cookies:
+        # since the header value can be a list, use `set_tag()` to ensure it is converted to a string
+        span.set_tag(_normalize_tag_name("request", k, kind="cookies"), cookies[k])
+
+
 def _get_rate_limiter():
     # type: () -> RateLimiter
     return RateLimiter(int(os.getenv("DD_APPSEC_TRACE_RATE_LIMIT", DEFAULT_TRACE_RATE_LIMIT)))
@@ -229,6 +236,10 @@ class AppSecSpanProcessor(SpanProcessor):
                 return
             if _Addresses.SERVER_REQUEST_HEADERS_NO_COOKIES in data:
                 _set_headers(span, data[_Addresses.SERVER_REQUEST_HEADERS_NO_COOKIES])
+
+            if _Addresses.SERVER_REQUEST_COOKIES in data:
+                _set_cookies(span, data[_Addresses.SERVER_REQUEST_COOKIES])
+
             # Partial DDAS-011-00
             log.debug("[DDAS-011-00] AppSec In-App WAF returned: %s", res)
             span._set_str_tag("appsec.event", "true")
