@@ -87,7 +87,7 @@ venv = Venv(
     },
     venvs=[
         Venv(
-            pys=["3"],
+            pys=["3.9"],
             pkgs={
                 "black": "==21.4b2",
                 "isort": [latest],
@@ -110,7 +110,7 @@ venv = Venv(
             ],
         ),
         Venv(
-            pys=["3"],
+            pys=["3.9"],
             pkgs={
                 "flake8": ">=3.8,<3.9",
                 "flake8-blind-except": latest,
@@ -129,22 +129,26 @@ venv = Venv(
             ],
         ),
         Venv(
-            pys=["3"],
+            pys=["3.9"],
             name="mypy",
             command="mypy {cmdargs}",
             create=True,
             pkgs={
-                "mypy": latest,
+                "mypy": "==0.961",
                 "types-attrs": latest,
                 "types-docutils": latest,
                 "types-protobuf": latest,
                 "types-PyYAML": latest,
                 "types-setuptools": latest,
                 "types-six": latest,
+                "types-requests": latest,
+                "types-boto": latest,
+                "types-redis": latest,
+                "types-PyMySQL": latest,
             },
         ),
         Venv(
-            pys=["3"],
+            pys=["3.9"],
             pkgs={"codespell": "==2.1.0"},
             venvs=[
                 Venv(
@@ -158,7 +162,7 @@ venv = Venv(
             ],
         ),
         Venv(
-            pys=["3"],
+            pys=["3.9"],
             pkgs={"slotscheck": latest},
             venvs=[
                 Venv(
