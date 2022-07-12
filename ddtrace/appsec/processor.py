@@ -103,8 +103,12 @@ def _set_headers(span, headers):
 def _set_cookies(span, cookies):
     # type: (Span, Dict[str, Union[str, List[str]]]) -> None
     for k in cookies:
+        cookie = cookies[k]
+        # flask~=0.12.0 create a list of values for each cookie instead a string
+        if (isinstance(cookie, list) or isinstance(cookie, tuple)) and len(cookie) == 1:
+            cookie = cookie[0]
         # since the header value can be a list, use `set_tag()` to ensure it is converted to a string
-        span.set_tag(_normalize_tag_name("request", k, kind="cookies"), cookies[k])
+        span.set_tag(_normalize_tag_name("request", k, kind="cookies"), cookie)
 
 
 def _get_rate_limiter():
